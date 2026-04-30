@@ -21,33 +21,53 @@
 
 // Explanation: Compare the next unprocessed arrival time from both logs and append the earlier one to the final log until all entries are processed
 
-# Input
-p = int(input())
-log1 = list(map(int, input().split()))
 
-q = int(input())
-log2 = list(map(int, input().split()))
+#include <stdio.h>
 
-# Merge process
-i, j = 0, 0
-merged_log = []
+int main() {
+    int p, q;
 
-while i < p and j < q:
-    if log1[i] <= log2[j]:
-        merged_log.append(log1[i])
-        i += 1
-    else:
-        merged_log.append(log2[j])
-        j += 1
+    // Input size of first log
+    scanf("%d", &p);
+    int log1[p];
 
-# Add remaining elements
-while i < p:
-    merged_log.append(log1[i])
-    i += 1
+    // Input elements of first log
+    for(int i = 0; i < p; i++) {
+        scanf("%d", &log1[i]);
+    }
 
-while j < q:
-    merged_log.append(log2[j])
-    j += 1
+    // Input size of second log
+    scanf("%d", &q);
+    int log2[q];
 
-# Output
-print(*merged_log)
+    // Input elements of second log
+    for(int i = 0; i < q; i++) {
+        scanf("%d", &log2[i]);
+    }
+
+    int i = 0, j = 0;
+
+    // Merge and print directly
+    while(i < p && j < q) {
+        if(log1[i] <= log2[j]) {
+            printf("%d ", log1[i]);
+            i++;
+        } else {
+            printf("%d ", log2[j]);
+            j++;
+        }
+    }
+
+    // Remaining elements
+    while(i < p) {
+        printf("%d ", log1[i]);
+        i++;
+    }
+
+    while(j < q) {
+        printf("%d ", log2[j]);
+        j++;
+    }
+
+    return 0;
+}
